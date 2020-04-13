@@ -6,7 +6,6 @@ function App() {
   return (
     <Fragment>
       <Header titulo="Buscador de Noticias"/>
-
       <div className="container">
         <Formulario/>
       </div>
