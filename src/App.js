@@ -12,14 +12,14 @@ function App() {
   useEffect(() => {
     const consultarAPI = async () => {
       const API = "e79b43651a0a4321b29f3f415029e624";
-      const url = `https://newsapi.org/v2/top-headlines?country=mx&apiKey=${API}`;
+      const url = `https://newsapi.org/v2/top-headlines?country=mx&category=${categoria}&apiKey=${API}`;
 
       const respuesta = await fetch(url);
       const resultado = await respuesta.json();
 
       setNoticias(resultado.articles);
     }
-
+    
     consultarAPI();
   },[categoria]);
 

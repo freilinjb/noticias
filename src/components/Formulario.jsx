@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Formulario.module.css';
 import useSelect from '../hooks/useSelect';
+import PropTypes from 'prop-types';
 
 const Formulario = ({setCategoria}) => {
 
@@ -19,9 +20,7 @@ const Formulario = ({setCategoria}) => {
     const buscarNoticias = e => {
         e.preventDefault();
 
-        setCategoria(categoria);
-        console.log('enviando...');
-        
+        setCategoria(categoria);        
     }
 
     return ( 
@@ -37,6 +36,10 @@ const Formulario = ({setCategoria}) => {
             </div>
         </div>
      );
+}
+
+Formulario.propTypes = {
+    setCategoria: PropTypes.func.isRequired
 }
  
 export default Formulario;
