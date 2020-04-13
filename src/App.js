@@ -1,12 +1,13 @@
 import React,{Fragment, useState, useEffect} from 'react';
 import Header from './components/Header';
 import Formulario from './components/Formulario';
+import ListadoNoticias from './components/ListadoNoticias';
 
 function App() {
 
   //definir la categoria y noticias
   const [categoria, setCategoria] = useState('');
-  const [nocitias, setNocitias] = useState([]);
+  const [noticias, setNoticias] = useState([]);
 
   useEffect(() => {
     const consultarAPI = async () => {
@@ -14,9 +15,9 @@ function App() {
       const url = `https://newsapi.org/v2/top-headlines?country=mx&apiKey=${API}`;
 
       const respuesta = await fetch(url);
-      const noticias = await respuesta.json();
+      const resultado = await respuesta.json();
 
-      console.log(noticias.articles);
+      setNoticias(resultado.articles);
     }
 
     consultarAPI();
@@ -27,6 +28,7 @@ function App() {
       <Header titulo="Buscador de Noticias"/>
       <div className="container">
         <Formulario setCategoria={setCategoria}/>
+        <ListadoNoticias noticias={noticias}/>
       </div>
     </Fragment>
   );
