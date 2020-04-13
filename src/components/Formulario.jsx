@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Formulario.module.css';
 import useSelect from '../hooks/useSelect';
 
-const Formulario = () => {
+const Formulario = ({setCategoria}) => {
 
     const OPCIONES = [
         { value: 'general', label:'General'},
@@ -15,14 +15,25 @@ const Formulario = () => {
 
     const [categoria, SelectNoticias] = useSelect('general', OPCIONES);
 
+    //submit al form, pasar categoria a app.js
+    const buscarNoticias = e => {
+        e.preventDefault();
+
+        setCategoria(categoria);
+        console.log('enviando...');
+        
+    }
+
     return ( 
         <div className={`${styles.buscador} row justify-content-center`}>
             <div className="col-lg-8 col-sm-12">
+                <form onSubmit={buscarNoticias}>
                 <h2 className={styles.heading}>Encuentra Noticias por Categoría</h2>
 
-                <SelectNoticias/>
-                {/* styles[] es porque tiene '-' y eso no es estandar de JavaScript por es por eso */}
-                <button type="submit" className={`${styles['btn-block']} btn btn-info`}>Buscar</button>
+                    <SelectNoticias/>
+                    {/* styles[] es porque tiene '-' y eso no es estandar de JavaScript por es por eso */}
+                    <button type="submit" className={`${styles['btn-block']} btn btn-info`}>Buscar</button>
+                </form>
             </div>
         </div>
      );
